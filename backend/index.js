@@ -99,44 +99,53 @@ app.get('/api/menu/:restaurantKey', async (req, res) => {
 });
 
 app.post('/api/classify-menu/:restaurantKey', async (req, res) => {
-  const restaurantKey = req.params.restaurantKey.toLowerCase();
-  const restaurantName = usingRestaurants[restaurantKey]?.name;
-  if (!restaurantName) {
-    return res.status(404).json({ error: 'restaurant not in the system' });
+  try {
+    const restaurantKey = req.params.restaurantKey.toLowerCase();
+    const restaurantName = usingRestaurants[restaurantKey]?.name;
+    if (!restaurantName) {
+      return res.status(404).json({ error: 'restaurant not in the system' });
+    }
+
+    const menuItems = await getMenuItemsByName(restaurantName);
+    if (!menuItems.length) {
+      return res.status(404).json({ error: 'no menu items in the system' });
+    }
+
+    const existingItems = await MenuItem.find({ restaurant: restaurantName });
+    if (existingItems.length === menuItems.length) {
+      return res.json({ message: "menu already ai classify", items: existingItems });
+    }
+
+    const classifiedMenu = await AiMenuFiltering(menuItems, restaurantName);
+    console.log('ai menu:', classifiedMenu);
+
+    if (!Array.isArray(classifiedMenu) || classifiedMenu.length === 0) {
+      return res.status(500).json({
+        error: 'aI failed ',
+      });
+    }
+
+    const savedItems = await Promise.all(classifiedMenu.map(item => {
+      const original = menuItems.find(nutxItem => nutxItem.name === item.name) || {};
+      return new MenuItem({
+        name: item.name,
+        description: original.description || '',
+        calories: original.calories || 0,
+        servingSize: original.servingSize || '',
+        category: item.category,
+        restaurant: restaurantName
+      }).save();
+    }));
+
+    res.json({ message: 'menu was labeled and saved in db', savedItems });
+
+  } catch (error) {
+    console.error('Error in /api/classify-menu:', error);
+    if (error.response) {
+      console.error('Axios response data:', error.response.data);
+    }
+    res.status(500).json({ error: 'menu was not gotten', details: error.message });
   }
-
-  const menuItems = await getMenuItemsByName(restaurantName);
-  if (!menuItems.length) {
-    return res.status(404).json({ error: 'no menu items in the system' });
-  }
-
-  const existingItems = await MenuItem.find({ restaurant: restaurantName });
-  if (existingItems.length === menuItems.length) {
-    return res.json({ message: "menu already ai classify", items: existingItems });
-  }
-
-  const classifiedMenu = await AiMenuFiltering(menuItems, restaurantName);
-  console.log('ai menu:', classifiedMenu);
-
-  if (!Array.isArray(classifiedMenu) || classifiedMenu.length === 0) {
-    return res.status(500).json({
-      error: 'aI failed ',
-    });
-  }
-
-  const savedItems = await Promise.all(classifiedMenu.map(item => {
-    const original = menuItems.find(nutxItem => nutxItem.name === item.name) || {};
-    return new MenuItem({
-      name: item.name,
-      description: original.description || '',
-      calories: original.calories || 0,
-      servingSize: original.servingSize || '',
-      category: item.category,
-      restaurant: restaurantName
-    }).save();
-  }));
-
-  res.json({ message: 'menu was labeled and saved in db', savedItems });
 });
 
 app.post('/api/generate-combos', async (req, res) => {
