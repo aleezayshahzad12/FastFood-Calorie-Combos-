@@ -8,7 +8,7 @@
 
 ## 🎥 Demo Preview  
 
-![FastFood Calorie Combos Demo](https://your-gif-link-here.gif) 
+![FastFood Calorie Combos Demo](https://github.com/aleezayshahzad12/FastFood-Calorie-Combos-/blob/main/ChipotleCombo.gif?raw=true) 
 
 
 ## 🌟 Why This Project Stands Out
