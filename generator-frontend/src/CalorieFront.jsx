@@ -3,37 +3,39 @@ import React, { useState, useEffect } from 'react';
 function CalorieFront() {
   const [restaurants, setRestaurants] = useState([]);
   const [restaurant, setRestaurant] = useState('');
-  const [calUser, setCalUser] = useState(''); 
+  const [calUser, setCalUser] = useState('');
   const [menuItems, setMenuItems] = useState([]);
   const [grouped, setGrouped] = useState({});
   const [combos, setCombos] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true); // Add loading state
 
-  const api = 'http://localhost:3000/api';
+  const api = 'https://fastfood-calorie-combos-fasfood-combo.onrender.com/';
 
   useEffect(() => {
     RestruantInfo();
   }, []);
+  //
+  //
 
   const RestruantInfo = async () => {
     try {
       setLoading(true);
       const getting = await fetch(`${api}/restaurants`);
-      
+
       if (!getting.ok) {
         throw new Error(`Server responded with ${getting.status}`);
       }
-      
+
       const menuInfo = await getting.json();
       setRestaurants(menuInfo.restaurants || []);
-      
+
       if (menuInfo.restaurants && menuInfo.restaurants.length > 0) {
         setRestaurant(menuInfo.restaurants[0].id);
       }
     } catch (error) {
       console.error('failed to get restaurants:', error);
-     
+
       setRestaurants([]);
     } finally {
       setLoading(false);
@@ -45,7 +47,7 @@ function CalorieFront() {
       setError('Please select a restaurant first');
       return [];
     }
-    
+
     try {
       const url = `${api}/menu/${restaurant}/filter?maxCalories=${calUser || 0}`;
       const getting = await fetch(url);
@@ -87,12 +89,12 @@ function CalorieFront() {
 
   const generateCombos = async () => {
     setError('');
-    
+
     if (!restaurant) {
       setError('Please select a restaurant first');
       return;
     }
-    
+
     if (!calUser) {
       setError('Please enter a calorie target first');
       return;
@@ -188,7 +190,7 @@ function CalorieFront() {
         </div>
       </header>
 
-     
+
       <main className="relative mx-auto max-w-5xl px-2 pb-20">
         {/** takes care of the square that will show all the generation of combos */}
         <section className="relative w-full max-w-xl mx-auto rounded-xl border border-pink-700 bg-pink-900/60 px-6 py-4 shadow-xl mb-8">
