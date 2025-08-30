@@ -1,7 +1,7 @@
 const path = require('path');
-require('dotenv').config({ 
+require('dotenv').config({
   path: path.resolve(__dirname, '.env'),
-  debug: true 
+  debug: true
 });
 
 
@@ -10,7 +10,7 @@ const axios = require('axios');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
-const AiMenuFiltering  = require('./AiMenuFiltering'); 
+const AiMenuFiltering = require('./AiMenuFiltering');
 const MenuItem = require('./MenuLabelingDB');
 const ComboDsa = require('./ComboDsa');
 
@@ -18,9 +18,13 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-  origin: 'http://localhost:5173', 
+  origin: [
+    'http://localhost:5173',
+    'https://fastfoodcombogenerator.netlify.app'
+  ],
   credentials: true
 }));
+
 app.use(express.json());
 
 mongoose.connect(process.env.MONGODB_URI)
@@ -39,7 +43,7 @@ const usingRestaurants = {
   'pizzahut': { name: "Pizza Hut" },
   'dominos': { name: "Dominos" },
   'chipotle': { name: "Chipotle" },
-  'panda express': { name: "Panda Express "}
+  'panda express': { name: "Panda Express " }
 };
 
 async function getMenuItemsByName(restaurantName) {
@@ -97,13 +101,13 @@ app.get('/api/menu/:restaurantKey', async (req, res) => {
 app.post('/api/classify-menu/:restaurantKey', async (req, res) => {
   const restaurantKey = req.params.restaurantKey.toLowerCase();
   const restaurantName = usingRestaurants[restaurantKey]?.name;
-  if (!restaurantName){
-     return res.status(404).json({ error: 'restaurant not in the system' });
+  if (!restaurantName) {
+    return res.status(404).json({ error: 'restaurant not in the system' });
   }
 
   const menuItems = await getMenuItemsByName(restaurantName);
-  if (!menuItems.length){
-     return res.status(404).json({ error: 'no menu items in the system' });
+  if (!menuItems.length) {
+    return res.status(404).json({ error: 'no menu items in the system' });
   }
 
   const existingItems = await MenuItem.find({ restaurant: restaurantName });
@@ -115,7 +119,7 @@ app.post('/api/classify-menu/:restaurantKey', async (req, res) => {
   console.log('ai menu:', classifiedMenu);
 
   if (!Array.isArray(classifiedMenu) || classifiedMenu.length === 0) {
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'aI failed ',
     });
   }
@@ -124,10 +128,10 @@ app.post('/api/classify-menu/:restaurantKey', async (req, res) => {
     const original = menuItems.find(nutxItem => nutxItem.name === item.name) || {};
     return new MenuItem({
       name: item.name,
-      description: original.description || '', 
-      calories: original.calories || 0, 
+      description: original.description || '',
+      calories: original.calories || 0,
       servingSize: original.servingSize || '',
-      category: item.category, 
+      category: item.category,
       restaurant: restaurantName
     }).save();
   }));
@@ -141,8 +145,8 @@ app.post('/api/generate-combos', async (req, res) => {
   if (!restaurantKey) {
     return res.status(400).json({ error: 'restaurantKey required' });
   }
-  if (!targetCalories || isNaN(targetCalories)){
-     return res.status(400).json({ error: 'targetCalories must be  a number' });
+  if (!targetCalories || isNaN(targetCalories)) {
+    return res.status(400).json({ error: 'targetCalories must be  a number' });
   }
 
   let restaurantName;
@@ -151,9 +155,9 @@ app.post('/api/generate-combos', async (req, res) => {
   } else {
     return res.status(404).json({ error: 'restaurant not in api' });
   }
-    if (!restaurantName) {
-      return res.status(404).json({ error: 'restaurant not in coding systen' });
-    }
+  if (!restaurantName) {
+    return res.status(404).json({ error: 'restaurant not in coding systen' });
+  }
 
   try {
     let menuItems = await MenuItem.find({ restaurant: restaurantName });
@@ -170,7 +174,7 @@ app.post('/api/generate-combos', async (req, res) => {
           updatedItem = item;
         }
         return updatedItem;
-              });
+      });
 
       await Promise.all(menuItems.map(item => MenuItem.updateOne(
         { _id: item._id },
