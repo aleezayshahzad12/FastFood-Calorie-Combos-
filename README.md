@@ -10,7 +10,6 @@
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/aleezayshahzad12/FastFood-Calorie-Combos-/main/2.gif" width="500" />
-  <img src="https://github.com/aleezayshahzad12/FastFood-Calorie-Combos-/blob/main/comboGenerator.gif?raw=true" width="500" />
   <img src="https://raw.githubusercontent.com/aleezayshahzad12/FastFood-Calorie-Combos-/main/ChipotleCombo.gif" width="500" />
 </p>
 
