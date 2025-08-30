@@ -56,7 +56,7 @@ ${preprocessedMenu}
     });
 
     const textResponse = response.choices[0].message.content;
-    console.log('Raw AI response:', textResponse);
+    //console.log('Raw AI response:', textResponse);
 
     let parsedResponse = [];
     try {
@@ -107,7 +107,7 @@ ${preprocessedMenu}
       filtered = filtered.filter(item => item.category !== 'ignore' && item.category !== 'drink');
     }
 
-    console.log('Filtered result:', filtered);
+    //console.log('Filtered result:', filtered);
     return filtered;
 
   } catch (err) {

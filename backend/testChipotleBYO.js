@@ -10,8 +10,8 @@ const AiMenuFiltering = require('./AiMenuFiltering');
 
   const classifiedMenu = await AiMenuFiltering(menuItems, "Panda Express");
 
-  console.log("start");
+  //console.log("start");
   classifiedMenu.forEach(item => {
-    console.log(`${item.name} => ${item.category} (${item.calories})`);
+    //console.log(`${item.name} => ${item.category} (${item.calories})`);
   });
 })();

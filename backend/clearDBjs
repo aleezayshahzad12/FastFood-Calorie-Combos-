@@ -7,10 +7,10 @@ const MenuItem = require('./MenuLabelingDB');
 
 async function checkPanda() {
   await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/calorieDB');
-  console.log('DB yes');
+  //console.log('DB yes');
 
   const items = await MenuItem.find({ restaurant: /panda express/i });
-  console.log(items.map(i => `"${i.restaurant}"`));
+  c//onsole.log(items.map(i => `"${i.restaurant}"`));
 
   await mongoose.disconnect();
 }

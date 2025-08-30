@@ -40,8 +40,6 @@ const usingRestaurants = {
   'tacobell': { name: "Taco Bell" },
   'kfc': { name: "KFC" },
   'chickfila': { name: "Chick-fil-A" },
-  'pizzahut': { name: "Pizza Hut" },
-  'dominos': { name: "Dominos" },
   'chipotle': { name: "Chipotle" },
   'panda express': { name: "Panda Express " }
 };
@@ -57,7 +55,7 @@ async function getMenuItemsByName(restaurantName) {
     timeout: 5000
   });
 
-  console.log('nutritionix response for', restaurantName, response.data);
+  //console.log('nutritionix response for', restaurantName, response.data);
 
 
   if (!response.data.branded || response.data.branded.length === 0) {
@@ -117,7 +115,7 @@ app.post('/api/classify-menu/:restaurantKey', async (req, res) => {
     }
 
     const classifiedMenu = await AiMenuFiltering(menuItems, restaurantName);
-    console.log('ai menu:', classifiedMenu);
+    //console.log('ai menu:', classifiedMenu);
 
     if (!Array.isArray(classifiedMenu) || classifiedMenu.length === 0) {
       return res.status(500).json({
