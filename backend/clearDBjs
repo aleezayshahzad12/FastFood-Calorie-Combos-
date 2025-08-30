@@ -1,0 +1,18 @@
+//in order to clean the db for a particular fast food, add the restruant. 
+const mongoose = require('mongoose');
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '.env'), debug: true });
+
+const MenuItem = require('./MenuLabelingDB');
+
+async function checkPanda() {
+  await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/calorieDB');
+  console.log('DB yes');
+
+  const items = await MenuItem.find({ restaurant: /panda express/i });
+  console.log(items.map(i => `"${i.restaurant}"`));
+
+  await mongoose.disconnect();
+}
+
+checkPanda();
