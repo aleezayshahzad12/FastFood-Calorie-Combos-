@@ -62,9 +62,11 @@ ${preprocessedMenu}
     try {
       parsedResponse = JSON.parse(textResponse);
       if (Array.isArray(parsedResponse)) {
+      } else if (parsedResponse && Array.isArray(parsedResponse.menuItems)) {
+        parsedResponse = parsedResponse.menuItems;
       } else if (parsedResponse && Array.isArray(parsedResponse.items)) {
         parsedResponse = parsedResponse.items;
-      } 
+      }
       else {
         console.error('AI response is not in expected format:', parsedResponse);
         return [];
@@ -81,7 +83,7 @@ ${preprocessedMenu}
             console.error('Recovered AI response is not in expected format:', parsedResponse);
             return [];
           }
-          
+
         } catch {
           console.error('AI response not valid JSON even after recovery.');
           return [];
