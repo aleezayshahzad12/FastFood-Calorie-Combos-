@@ -1,9 +1,14 @@
 # FastFood-Calorie-Combos
-fastfoodcombogenerator.netlify.app
+[fastfoodcombogenerator.netlify.app](https://fastfoodcombogenerator.netlify.app)  
+
 
 **Full-stack, AI-integrated calorie-focused meal combo generator** that lets users enjoy fast-food restaurants while staying within desired calorie targets.
 
 **🚀 Impact:** Reduces repeated AI calls by over **80%**, eliminates manual calorie tracking, and delivers personalized meal combos tailored to user calorie targets, breaking the belief that dieting means giving up favorite restaurants.
+
+## 🎥 Demo Preview  
+
+![FastFood Calorie Combos Demo](https://your-gif-link-here.gif) 
 
 
 ## 🌟 Why This Project Stands Out
