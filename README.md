@@ -7,11 +7,20 @@
 
 ## 🌟 Why This Project Stands Out
 
-- **Automated AI Menu Classification:** Menu items fetched from APIs are automatically classified into categories (main, side, drink, dessert, sauce) with restaurant-specific handling.  
-- **Caching for Efficiency:** AI classification is stored in MongoDB after the first run, avoiding repeated API calls and reducing both response time and costs.
+- **🤖 Automated AI Menu Classification:** Menu items fetched from APIs are automatically classified into categories (main, side, drink, dessert, sauce) with restaurant-specific handling.  
+- **💾 Smart Caching:** AI classification is stored in MongoDB after the first run, avoiding repeated API calls and reducing both response time and costs.
 - **Advanced Combo Generation:** Generates calorie-specific meal combos using restaurant-aware patterns, fallback strategies, and BYO templates when menu data is limited.   
 - **Performance-Optimized:** Stores successful combos and reuses them when new generations fall short, ensuring fast, reliable results.
-- **Production-Ready:** Deployed backend + frontend for immediate use  
+- **Production-Ready:** Fully deployed and ready to use
+  
+## 🚀 Quick Start
+
+1. **Select a restaurant** from the dropdown
+2. **Enter your calorie target** (e.g., 700 calories)
+3. Clicks “**Load Menu**” → filtered menu items for that range are displayed.
+4. **Click "Generate Combos"**  to get calorie-compliant meal combos.
+5. **Regenerate combos multiple times** and duplicates are automatically avoided. 
+6. **Enjoy** your personalized fast-food meal within your goals!
   
 ## 🛠 Tech Stack
 - **Frontend:** React + Vite + Tailwind CSS (responsive UI + combo dashboard)  
@@ -19,40 +28,38 @@
 - **Database:** MongoDB + Mongoose  
 - **Authentication & Security:** JWT, bcryptjs  
 - **Integrations:** OpenAI (OpenAI GPT models for menu classification) and  Nutritionix API (menu items)  
-- **Deployment:** Render+ Netlify  
+- **Deployment:** Render+ Netlify
+-  
+## 🎯 Key Features
 
-## ⚡ Key Features
-- **Automated Menu Classification** – AI labels all menu items by category and restaurant.
-- **Pattern-Based Combo Generation:** – Uses pre-defined patterns (e.g., main + side + drink, main + dessert) to generate balanced meal combos.
-- **BYO Templates Support:** – Custom “Build Your Own” combos to handle API limitations.
-- **Calorie-Aware:** – Combos are intelligently generated to stay within user-specified calorie ranges.
-- **Caching & Combo Memory:**
-      - Remembers successful combos for each restaurant/calorie combination
-      - Adapts attempt limits based on previous generation success
-      - Reuses valid combos if new generation falls short
-- **Duplicate Prevention:** – Prevents generation of duplicate combos beyond allowed limits.
-- **Pattern-Flexible:** – : Easy to add new restaurant types and meal patterns.
+### Automated AI Classification
+- Menu items automatically categorized into: main, side, drink, dessert, sauce
+- Restaurant-specific logic for optimal categorization
+- One-time classification with MongoDB caching
 
-### 📌 User Experience
+### Intelligent Combo Generation
+- Pattern-based combo creation (main + side + drink, etc.)
+- Calorie-aware algorithm ensures target compliance
+- BYO (Build-Your-Own) templates for restaurants like Chipotle/Cava
 
-- **Simple Workflow** 
-      1. User selects a supported restaurant.
-      2. Enters desired calorie range.
-      3. Clicks “**Load Menu**” → filtered menu items for that range are displayed.
-      4. Clicks “Generate Combos” → calorie-compliant meal combos are generated.
-- **Interactive & Flexible:** - Users can regenerate combos multiple times; duplicates are automatically avoided, and combos adhere to calorie limits
+### Performance Optimized
+- Combo caching prevents redundant calculations
+- Adaptive attempt limits based on generation history
+- Fallback strategies guarantee combo delivery
 
-- **Health-Friendly:** - Enables users to enjoy favorite fast foods without exceeding calorie goals, supporting health or weight management efforts.
+## 📋 Supported Restaurants
 
-
-### 🤖 AI & Automation
-- Fully automated menu classification ensures accurate, restaurant-specific labeling.
-
-- Caching reduces API calls and response times.
-
-- Combo generation intelligently balances calorie constraints with meal variety.
-
-- Multiple fallback strategies ensure combos are always generated, even with limited menu items.
+- McDonald's
+- Taco Bell
+- Burger King
+- Wendy's
+- Chick-fil-A
+- Chipotle
+- Cava
+- Pizza Hut
+- Domino's
+- KFC
+- Panda Express
 
 
  ## 🔌 APIs & Services
