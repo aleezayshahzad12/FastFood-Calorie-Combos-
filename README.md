@@ -56,31 +56,29 @@
 
 
  ## 🔌 APIs & Services
-- **OpenAI API:** AI-powered email generation  
-- **Zoom API:** Meeting creation/management  
-- **SendGrid / Nodemailer:** Email delivery
-
+- **OpenAI API:** AI-powered menu classification
+- **Nutritionix API:** Menu and nutritional data 
 
 ## 🛠 Development Tools
 - **dotenv:** Environment variable management  
 - **CORS:** Cross-origin resource sharing  
 - **Axios:** HTTP client
-- **Deployment:** Railway and Netlify
+- **Deployment:** Render and Netlify
 
 
 ## 🏗️ Architecture  
 The platform follows a RESTful API architecture with:  
-- **React Frontend**: Responsive client interface + admin dashboard  
-- **Express Backend**: Handles business logic & integrations  
-- **MongoDB Database**: Stores inquiries, users, and bookings  
-- **Third-party Integrations**: Email + video services  
+- **React Frontend**: Responsive client interface 
+- **Express Backend**: Handles integrations with AI classification, pattern-based combo generation, caching, and BYO support  
+- **MongoDB Database**: Stores menu classifications and previously generated combos
+- **Third-party Integrations**: Menu and nutritional data  
 
 
 ## 🔧 Installation & Setup
 ```bash
 # 1) Clone the repository
-git clone https://github.com/your-username/Chai-Co-AI-Powered-Event-Booking-Management-Platform.git
-cd Chai-Co-AI-Powered-Event-Booking-Management-Platform
+git clone https://github.com/your-username/FastFood-Calorie-Combos.git
+cd FastFood-Calorie-Combos
 
 # 2) Install dependencies
 npm install
@@ -91,7 +89,7 @@ cp .env.example .env
 
 # 4)  Start development servers
 npm run dev  # Frontend (Vite)
-npm run server  # Backend (Node.js)
+npm run index  # Backend (Node.js)
 ```
 
 ## 📁 Environment Variables
@@ -100,35 +98,24 @@ Create a .env file with:
 env
 MONGODB_URI=your_mongodb_connection_string
 
-JWT_SECRET=your_jwt_secret_key
-
 OPENAI_API_KEY=your_openai_api_key
 
-ZOOM_CLIENT_ID=your_zoom_client_id
+NUTRITIONIX_APP_ID=your_nutritionix_app_id
 
-ZOOM_CLIENT_SECRET=your_zoom_client_secret
-
-ZOOM_ACCOUNT_ID=your_zoom_account_id
-
-SENDGRID_API_KEY=your_sendgrid_api_key
-
-TEAM_EMAILS=team@example.com
+NUTRITIONIX_APP_KEY=your_nutritionix_app_key
 
 PORT=3000
 ```
 
 ## 📄 License
-This project is proprietary and maintained by Chai & Co.
+MIT License © 2025 Aleezay Shahzad
 
 ## 🏆 Acknowledgments
-OpenAI for powerful language model capabilities
+OpenAI for menu classification
 
-Zoom for seamless video meeting integration
+Nutritionix for menu and nutrition data
 
-SendGrid for reliable email delivery services
-
-MongoDB for robust data storage solutions
-
+MongoDB for caching and efficient storage
 
 
 
