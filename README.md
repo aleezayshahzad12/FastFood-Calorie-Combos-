@@ -9,8 +9,8 @@
 ## 🎥 Demo Preview  
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/aleezayshahzad12/FastFood-Calorie-Combos-/main/2.gif" width="500" />
-  <img src="https://raw.githubusercontent.com/aleezayshahzad12/FastFood-Calorie-Combos-/main/ChipotleCombo.gif" width="500" />
+  <img src="https://raw.githubusercontent.com/aleezayshahzad12/FastFood-Calorie-Combos-/main/2.gif" width="550" />
+  <img src="https://raw.githubusercontent.com/aleezayshahzad12/FastFood-Calorie-Combos-/main/ChipotleCombo.gif" width="550" />
 </p>
 
   
