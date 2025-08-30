@@ -10,7 +10,7 @@ function CalorieFront() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true); // Add loading state
 
-  const api = 'https://fastfood-calorie-combos-fasfood-combo.onrender.com/';
+  const api = 'https://fastfood-calorie-combos-fasfood-combo.onrender.com';
 
   useEffect(() => {
     RestruantInfo();
