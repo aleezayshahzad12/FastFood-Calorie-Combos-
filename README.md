@@ -1,5 +1,5 @@
 # FastFood-Calorie-Combos
-[https://chaincoevents.netlify.app/](https://chaincoevents.netlify.app/)  
+[https://fastfoodcombogenerator.netlify.app/](https://fastfoodcombogenerator.netlify.app/)  
 
 
 **Full-stack, AI-integrated calorie-focused meal combo generator** that lets users enjoy fast-food restaurants while staying within desired calorie targets.
